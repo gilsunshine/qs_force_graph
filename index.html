@@ -1,1 +1,42 @@
-import ForceGraph3D from '3d-force-graph';
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Queer Space Force Graph</title>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+
+  <script src="./src/3d-force-graph.js"></script>
+
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+</head>
+
+<body>
+  <div id="3d-graph"></div>
+
+  <script>
+    const N = 300;
+    const gData = {
+      nodes: [...Array(N).keys()].map(i => ({
+        id: i
+      })),
+      links: [...Array(N).keys()]
+        .filter(id => id)
+        .map(id => ({
+          source: id,
+          target: Math.round(Math.random() * (id - 1))
+        }))
+    };
+
+    const Graph = ForceGraph3D()
+      (document.getElementById('3d-graph'))
+      .graphData(gData);
+  </script>
+
+</body>
+
+</html>
